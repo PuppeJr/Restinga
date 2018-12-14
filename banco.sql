@@ -1,65 +1,67 @@
-create database restinga;
+CREATE DATABASE restinga;
 
 use restinga;
 
-create table negocios(
-	ramo_negocios varchar (50) not null,
-	nome_negocios varchar(100)not null,
-	primary key (ramo_negocios)
+CREATE TABLE usuario(
+	id int unsigned NOT NULL auto_increment,
+	nome varchar(50) NOT NULL,
+	genero enum ('F','M'),
+	endereço varchar (50) NOT NULL,
+	bairro varchar (50) NOT NULL,
+	cep varchar(8) NOT NULL,
+	ramo_negocios varchar(2) NOT NULL,
+	PRIMARY KEY(id),
+	CONSTRAINT fk_ramo
+	FOREIGN KEY (usuario)
+	REFERENCES ramo(id)
 );
 
-insert into negocios(ramo_negocios,nome_negocios)
-values
+INSERT INTO usuario
+(id,nome,genero,endereço,bairro,cep,sigla_estado)
+VALUES
+(1,'nome','genero','endereco','bairro','cep','sigla_estado');
+
+CREATE TABLE negocios(
+	ramo_negocios varchar (50) NOT NULL,
+	nome_negocios varchar(100) NOT NULL,
+	PRIMARY KEY (ramo_negocios)
+);
+
+INSERT INTO negocios(ramo_negocios,nome_negocios)
+VALUES
 ('restaurante','    ');
-insert into negocios(ramo_negocios,nome_negocios)
-values
+INSERT INTO negocios(ramo_negocios,nome_negocios)
+VALUES
 ('supermercado','    ');
-insert into negocios(ramo_negocios,nome_negocios)
-values
+INSERT INTO negocios(ramo_negocios,nome_negocios)
+VALUES
 ('atacado','    ');
-insert into negocios(ramo_negocios,nome_negocios)
-values
+INSERT INTO negocios(ramo_negocios,nome_negocios)
+VALUES
 ('armarinho','      ');
-insert into negocios(ramo_negocios,nome_negocios)
-values
+INSERT INTO negocios(ramo_negocios,nome_negocios)
+VALUES
 ('loja','       ');
 
-select * from negocios;
+SELECT * FROM negocios;
 
 
-create table ramo(
-	id int unsigned not null auto_increment,        
+CREATE TABLE ramos(
+	id int unsigned NOT NULL auto_increment,        
 	usuario_id int unsigned default null,
-	restaurante varchar(20) not null,
-	supermercado varchar (50) not null,
-	atacado varchar(30) not null, 
-	armarinho varchar(30) not null,
-	loja varchar(30) not null,
-	primary key (id),
+	restaurante varchar(20) NOT NULL,
+	supermercado varchar (50) NOT NULL,
+	atacado varchar(30) NOT NULL, 
+	armarinho varchar(30) NOT NULL,
+	loja varchar(30) NOT NULL,
+	PRIMARY KEY (id),
 	CONSTRAINT fk_ramo_negocios
 	FOREIGN KEY (negocios)
 	REFERENCES usuario(id)
 );
 
-insert ramo (id,usuario_id,restaurante,supermercado,atacado,armarinho,loja)
-values
+INSERT ramo (id,usuario_id,restaurante,supermercado,atacado,armarinho,loja)
+VALUES
 (null,'restaurante','supermercado','atacado','armarinho','loja');
 
-create table usuario(
-	id int unsigned not null auto_increment,
-	nome varchar(50) not null,
-	genero enum ('F','M'),
-	endereço varchar (50) not null,
-	bairro varchar (50)not null,
-	cep varchar(8)not null,
-	ramo_negocios varchar(2)not null,
-	primary key(id),
-	constraint fk_ramo
-	foreign key (usuario)
-	references ramo(id)
-);
 
-insert into usuario
-(id,nome,genero,endereço,bairro,cep,sigla_estado)
-values
-(1,'nome','genero','endereco','bairro','cep','sigla_estado');
