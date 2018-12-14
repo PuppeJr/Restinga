@@ -38,7 +38,7 @@ VALUES
 ('atacado','    ');
 INSERT INTO negocios(ramo_negocios,nome_negocios)
 VALUES
-('armarinho','      ');
+('mercado','      ');
 INSERT INTO negocios(ramo_negocios,nome_negocios)
 VALUES
 ('loja','       ');
@@ -49,10 +49,10 @@ SELECT * FROM negocios;
 CREATE TABLE ramos(
 	id int unsigned NOT NULL auto_increment,        
 	usuario_id int unsigned default null,
-	restaurante varchar(20) NOT NULL,
+	restaurante varchar(50) NOT NULL,
 	supermercado varchar (50) NOT NULL,
-	atacado varchar(30) NOT NULL, 
-	armarinho varchar(30) NOT NULL,
+	atacado varchar(50) NOT NULL, 
+	mercado varchar(50) NOT NULL,
 	loja varchar(30) NOT NULL,
 	PRIMARY KEY (id),
 	CONSTRAINT fk_ramo_negocios
@@ -60,8 +60,10 @@ CREATE TABLE ramos(
 	REFERENCES usuario(id)
 );
 
-INSERT ramo (id,usuario_id,restaurante,supermercado,atacado,armarinho,loja)
+INSERT ramo (id,usuario_id,restaurante,supermercado,atacado,mercado,loja)
 VALUES
-(null,'restaurante','supermercado','atacado','armarinho','loja');
+(null,'restaurante','supermercado','atacado','mercado','loja');
+
+CREATE TABLE 
 
 
