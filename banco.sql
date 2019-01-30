@@ -2,32 +2,34 @@ CREATE DATABASE restinga;
 
 use restinga;
 
-CREATE TABLE usuario(
+CREATE TABLE clientes(
 	id int unsigned NOT NULL auto_increment,
 	nome varchar(50) NOT NULL,
 	genero enum ('F','M'),
 	endereço varchar (50) NOT NULL,
 	bairro varchar (50) NOT NULL,
 	cep varchar(8) NOT NULL,
-	ramo_negocios varchar(2) NOT NULL,
+	ramo_negocios varchar(50) NOT NULL,
 	PRIMARY KEY(id),
 	CONSTRAINT fk_ramo
 	FOREIGN KEY (usuario)
-	REFERENCES ramo(id)
+	REFERENCES loja(id)
 );
 
-INSERT INTO usuario
-(id,nome,genero,endereço,bairro,cep,sigla_estado)
+INSERT INTO clientes
+(id,nome,genero,endereço,bairro,cep,ramo_negocios)
 VALUES
-(1,'nome','genero','endereco','bairro','cep','sigla_estado');
+(null,'nome','genero','endereco','bairro','cep','ramo_negocios');
 
-CREATE TABLE negocios(
-	ramo_negocios varchar (50) NOT NULL,
-	nome_negocios varchar(100) NOT NULL,
-	PRIMARY KEY (ramo_negocios)
+CREATE TABLE loja(
+	id int unsigned NOT NULL auto_increment,
+	nome varchar(100) NOT NULL,
+	endereço varchar(100) NOT NULL,
+	cep: 
+	PRIMARY KEY (loja)
 );
 
-INSERT INTO negocios(ramo_negocios,nome_negocios)
+INSERT INTO Loja(id, nome, endereço, cep)
 VALUES
 ('restaurante','    ');
 INSERT INTO negocios(ramo_negocios,nome_negocios)
@@ -42,8 +44,6 @@ VALUES
 INSERT INTO negocios(ramo_negocios,nome_negocios)
 VALUES
 ('loja','       ');
-
-SELECT * FROM negocios;
 
 
 CREATE TABLE ramos(
